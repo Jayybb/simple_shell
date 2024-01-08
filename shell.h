@@ -6,20 +6,18 @@
 #define _CMD_NO_EXISTS "not found"
 #define _ENOENT_ "no such directory"
 
-typedef struct _attribute_((_packed_))
-{
+typedef struct  {
 char *cmd;
-void (*func)(shell_t *str, char **args);
+
 } sysfunction_t;
 
-typedef struct _attribute_((_packed_))
-{
+typedef struct {
 int argc;
 char *cmd;
 char *env;
 int pid;
 int n_cmd;
-it cur_path;
+int cur_path;
 char *cmd_path;
 char **argv;
 char *buf;
@@ -27,12 +25,12 @@ int error_digit;
 char **args;
 int code_stat;
 int it_mode;
-} shell_t
 
-typedef struct _attribute_((_packed_))
-{
+} shell_t;
+
+typedef struct {
 char *msg;
 int password;
-} issue_t
+} issue_t;
 
 #endif

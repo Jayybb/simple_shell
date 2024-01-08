@@ -17,9 +17,12 @@ void binExit(shell_t *str, char **args);
 void binEnv(shell_t *str, char **args);
 int buildins(shell_t *str, char **args);
 int verifybuildin(shell_t *str, char **args);
-char *strcat(char *dest, char *src);
-int strlen(char *s);
-int strcmp(char *s1, char *s2);
-
-
+char *_strcat(char *dest, char *src);
+int _strlen(char *s);
+int _strcmp(char *s1, char *s2);
+void freeMemory(void *ptr);
+void freeMemoryPointer(void **ptr);
+int manageNumbers(shell_t *str, char *argument);
+void fetchFullEnv(void);
+int systemfunction(shell_t *str, char **args);
 #endif

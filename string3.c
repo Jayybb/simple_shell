@@ -1,13 +1,13 @@
 #include "shell.h"
 #include "function.h"
 /**
- * strcmp - compare two strings in a buffer
+ * _strcmp - compare two strings in a buffer
  * @s1: first string
  * @s2: second string
  *
  * Return: 0
  */
-int strcmp(char *s1, char *s2)
+int _strcmp(char *s1, char *s2)
 {
 int i;
 int j = 0;

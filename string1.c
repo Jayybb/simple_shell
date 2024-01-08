@@ -1,14 +1,14 @@
 #include "shell.h"
 #include "function.h"
 /**
- * strcat - concertenate two strings in a buffer
+ * _strcat - concertenate two strings in a buffer
  *
  * @dest: the destination string
  * @src: the source string
  *
  * Return: dest
  */
-char *strcat(char *dest, char *src)
+char *_strcat(char *dest, char *src)
 {
 int i, j, k;
 
@@ -26,5 +26,5 @@ for (k = 0; k <= j; k++)
 dest[i + k] = src[k];
 }
 
-return (dest);
+return dest;
 }
