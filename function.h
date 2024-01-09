@@ -26,7 +26,7 @@ int manageNumbers(shell_t *str, char *argument);
 void fetchFullEnv(void);
 int systemfunction(shell_t *str, char **args);
 int displayer(char *message);
-int ErrorDisplay(char *message);
+int errorDisplay(char *message);
 int putToFD(char *message, int fil_d);
 int i_File(char *filename);
 void an_issue(shell_t *mytype);
@@ -37,4 +37,6 @@ char *_strcopy(char *dest, char *src);
 char *wordMerge(char *w1, char *w2, char *w3, const char *del);
 char *_strdog(char *dest, char *src);
 int _strlem(char *s);
+char *sunAnv(shell_t *mytype, char *envi_var);
+void error_addition(shell_t *mytype, char *more);
 #endif

@@ -9,7 +9,7 @@
  *
  * Return: pointer to the string
 **/
-char *exchange(shelldata_t *mytype, int *id, char *word)
+char *exchange(shell_t *mytype, int *id, char *word)
 {
 	char *tem, told;
 
@@ -18,12 +18,12 @@ char *exchange(shelldata_t *mytype, int *id, char *word)
 	told = *word;
 	if (told != '?' && told != '$')
 	{
-		tem = subEnv(mytype, word);
+		tem = sunAnv(mytype, word);
 		return (tem);
 	}
 
-	tem = (told == '$') ? stringify(mytype->pid) :
-		stringify(mytype->code_stat);
+	tem = (told == '$') ? stringified(mytype->pid):
+		stringified(mytype->code_stat);
 
 	return (tem);
 }

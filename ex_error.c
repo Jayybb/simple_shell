@@ -1,5 +1,5 @@
 #include "function.h"
-#include "shelldata.h"
+#include "shell.h"
 /**
  * additionalError - This is a function that Prints the error
  * message with extra/more information about the error
@@ -11,7 +11,7 @@
  *
  * Return: nothing.... just print error.
  **/
-void additionalError(shelldata_t *mytype, char *more)
+void error_addition(shell_t *mytype, char *more)
 {
 	char *mag, *nub;
 	char *au, *au2;
@@ -19,25 +19,25 @@ void additionalError(shelldata_t *mytype, char *more)
 	int more_size;
 
 	nub = NULL;
-	mag = selectMessage(*mytype);
-	nub = stringify(mytype->n_cmd);
+	mag = messageSelect(*mytype);
+	nub = stringified(mytype->n_cmd);
 
-	nub_size = _strlen(nub);
-	mag_size = _strlen(mytype->argv[0]);
-	more_size = _strlen(more);
+	nub_size = _strlem(nub);
+	mag_size = _strlem(mytype->argv[0]);
+	more_size = _strlem(more);
 
 	au = malloc(mag_size + nub_size + 3);
-	au = _strcpy(au, mytype->argv[0]);
-	au = _strcat(au, ": ");
-	au = _strcat(au, nub);
+	au = _strcopy(au, mytype->argv[0]);
+	au = _strdog(au, ": ");
+	au = _strdog(au, nub);
 
 	au2 = malloc(_strlen(mag) + more_size + 3);
-	au2 = _strcpy(au2, mag);
-	au2 = _strcat(au2, ": ");
-	au2 = _strcat(au2, more);
+	au2 = _strcopy(au2, mag);
+	au2 = _strcopy(au2, ": ");
+	au2 = _strcopy(au2, more);
 
-	mag = mergeWords(au, mytype->cmd, au2, ": ");
-	displayError(mag);
+	mag = wordMerge(au, mytype->cmd, au2, ": ");
+	errorDisplay(mag);
 
 	free(mag);
 	free(nub);
