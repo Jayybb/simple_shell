@@ -1,7 +1,7 @@
 #include "function.h"
 #include "shell.h"
 /**
- * exchange - This function is used to replace in the shell
+ * exchanging - This function is used to replace in the shell
  *
  * @mytype: a struct call that takes in a pointer
  * @id: index parameter to take note
@@ -9,7 +9,7 @@
  *
  * Return: pointer to the string
 **/
-char *exchange(shell_t *mytype, int *id, char *word)
+char *exchanging(shell_t *mytype, int *id, char *word)
 {
 	char *tem, told;
 

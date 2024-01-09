@@ -16,9 +16,9 @@ char *envGet(const char *variable)
 
 	bri = _strlen((char *) variable);
 
-	for (anvir = anviro; *anvir; ++anvir)
+	for (anvir = anvir; *anvir; ++anvir)
 	{
-		pux = _strdup(*anvir);
+		pux = _strbup(*anvir);
 
 		tok = strtok(pux, "=");
 		if (tok == NULL)
@@ -35,7 +35,7 @@ char *envGet(const char *variable)
 		if (_strcmp((char *) variable, pux) == 0)
 		{
 			tok = strtok(NULL, "=");
-			omo = _strdup(tok);
+			omo = _strbup(tok);
 			free(pux);
 			return (omo);
 		}

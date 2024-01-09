@@ -1,13 +1,13 @@
 #include "function.h"
 #include "shell.h"
 /**
- * fetchFullEnv - This function will help get all
+ * lookFullEnv - This function will help get all
  * the environment variable
  *
  * Return: nothing, just get the env. variable and carry on
  *
  **/
-void fetchFullEnv(void)
+void lookFullEnv(void)
 {
 	int a = 0;
 	char **temp;
@@ -15,6 +15,6 @@ void fetchFullEnv(void)
 	for (a = 0, temp = environ; temp[a] != NULL; a++)
 	{
 		displayer(temp[a]);
-		writeCharacter('\n');
+		characterWriter('\n');
 	}
 }
