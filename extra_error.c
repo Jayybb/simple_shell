@@ -1,7 +1,7 @@
 #include "function.h"
 #include "shell.h"
 /**
- * additionalError - This is the function that Prints the error
+ * error_addition - This is the function that Prints the error
  * message with extra and more information about error
  *
  * @mytype: a struct that gives info about shell
@@ -10,7 +10,7 @@
  *
  * Return: nothing.... print error and comtinue.
  **/
-void additionalError(shell_t *mytype, char *more)
+void error_addition(shell_t *mytype, char *more)
 {
 	char *num, *mrg;
 	char *bp, *bp2;
@@ -18,25 +18,30 @@ void additionalError(shell_t *mytype, char *more)
 	int more_size;
 
 	num = NULL;
-	mrg = selectMessage(*mytype);
-	num = stringify(mytype->n_cmd);
+	mrg = messageSelect(*mytype);
+	num = stringified(mytype->n_cmd);
 
-	num_size = _strlen(num);
-	mrg_size = _strlen(mytype->argv[0]);
-	more_size = _strlen(more);
+	num_size = _strlem(num);
+	mrg_size = _strlem(mytype->argv[0]);
+	more_size = _strlem(more);
 
 	bp = malloc(mrg_size + num_size + 3);
-	bp = _strcpy(bp, mytype->argv[0]);
-	bp = _strcat(bp, ": ");
-	bp = _strcat(bp, num);
+	bp = _strcopy(bp, mytype->argv[0]);
+	bp = _strdog(bp, ": ");
+	bp = _strdog(bp, num);
 
 	bp2 = malloc(_strlen(mrg) + more_size + 3);
-	bp2 = _strcpy(bp2, mrg);
-	bp2 = _strcat(bp2, ": ");
-	bp2 = _strcat(bp2, more);
+	bp2 = _strcopy(bp2, mrg);
+	bp2 = _strdog(bp2, ": ");
+	bp2 = _strdog(bp2, more);
 
+<<<<<<< HEAD
 	mrg = mergeWords(bp, mytype->cmd, bp2, ": ");
 	ErrorDisplay(mrg);
+=======
+	mrg = wordMerge(bp, mytype->cmd, bp2, ": ");
+	errorDisplay(mrg);
+>>>>>>> 8ea1ba3457e115a2034552b91fe6366f74b7075f
 
 	free(mrg);
 	free(num);

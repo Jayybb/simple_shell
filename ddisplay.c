@@ -2,7 +2,7 @@
 #include "shell.h"
 
 /**
- * display - This prints the message to the standard"
+ * displayer - This prints the message to the standard"
  *
  * @message : Message to the stdout
  *
