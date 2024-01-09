@@ -34,7 +34,7 @@ void evaluation(char **args, shell_t *mytype, char *buffer)
 	}
 	if (ondate == 1)
 	{
-		run(ccs, args, mytype, buffer);
+		japa(ccs, args, mytype, buffer);
 		return;
 	}
 	if (CurrentDir(ccs, args, buffer, mytype) == 1)
@@ -42,7 +42,7 @@ void evaluation(char **args, shell_t *mytype, char *buffer)
 	mytype->cmd_path = chosen(ccs, mytype);
 	if (mytype->cmd_path != NULL)
 	{
-		run(mytype->cmd_path, args, mytype, buffer);
+		japa(mytype->cmd_path, args, mytype, buffer);
 		freeMemory((void *) mytype->cmd_path);
 		return;
 	}
