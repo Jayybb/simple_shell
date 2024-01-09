@@ -66,6 +66,7 @@ typedef struct __attribute__((__packed__))
 {
     int argc;
     char *cmd;
+    char *ccs;
     char *env;
     int pid;
     int n_cmd;

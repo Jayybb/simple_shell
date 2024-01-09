@@ -37,13 +37,13 @@ void evaluation(char **args, shell_t *mytype, char *buffer)
 		run(ccs, args, mytype, buffer);
 		return;
 	}
-	if (getCurrentDir(ccs, args, buffer, mytype) == 1)
+	if (CurrentDir(ccs, args, buffer, mytype) == 1)
 		return;
-	mytype->cur_path = close(ccs, mytype);
-	if (mytype->cur_path != NULL)
+	mytype->cmd_path = close(ccs, mytype);
+	if (mytype->cmd_path != NULL)
 	{
-		run(mytype->cur_path, args, mytype, buffer);
-		freeMemory((void *) mytype->cur_path);
+		run(mytype->cmd_path, args, mytype, buffer);
+		freeMemory((void *) mytype->cmd_path);
 		return;
 	}
 	mytype->code_stat = 127;
