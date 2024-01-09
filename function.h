@@ -28,4 +28,6 @@ int systemfunction(shell_t *str, char **args);
 int displayer(char *message);
 int ErrorDisplay(char *message);
 int putToFD(char *message, int fil_d);
+int i_File(char *filename);
+void an_issue(shelldata_t *mytype);
 #endif

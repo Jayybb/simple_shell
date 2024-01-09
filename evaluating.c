@@ -9,7 +9,7 @@
  *
  * Return: nothing.
  **/
-void evaluate(char **args, shell_t *mytype, char *buffer)
+void evaluation(char **args, shell_t *mytype, char *buffer)
 {
 	char *ccs;
 	int new;
@@ -20,16 +20,16 @@ void evaluate(char **args, shell_t *mytype, char *buffer)
 	}
 	ccs = args[0];
 	mytype->ccs = ccs;
-	if (verifyBuiltin(mytype, args) == 1)
+	if (verifybuildn(mytype, args) == 1)
 	{
 		return;
 	}
-	new = isFile(ccs);
+	new = i_File(ccs);
 	if (update == 0)
 	{
 		mytype->code_stat = 126;
 		mytype->error_digit = 13;
-		issue(mytype);
+		an_issue(mytype);
 		return;
 	}
 	if (new == 1)
@@ -48,5 +48,5 @@ void evaluate(char **args, shell_t *mytype, char *buffer)
 	}
 	mytype->code_stat = 127;
 	mytype->error_digit = 132;
-	issue(mytype);
+	an_issue(mytype);
 }
