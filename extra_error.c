@@ -36,7 +36,7 @@ void additionalError(shell_t *mytype, char *more)
 	bp2 = _strcat(bp2, more);
 
 	mrg = mergeWords(bp, mytype->cmd, bp2, ": ");
-	displayError(mrg);
+	ErrorDisplay(mrg);
 
 	free(mrg);
 	free(num);

@@ -9,9 +9,10 @@
  *
  * Return: pointer to the string
 **/
-char *exchange(shelldata_t *mytype, int *id, char *word)
+char *exchange(shell_t *mytype, int *id, char *word)
 {
-	char *tem, told;
+	char *tem;
+        char told;
 
 	(void) id;
 

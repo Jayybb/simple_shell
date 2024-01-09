@@ -1,5 +1,5 @@
 #include "function.h"
-#include "shelldata.h"
+#include "shell.h"
 /**
  * additionalError - This is a function that Prints the error
  * message with extra/more information about the error
@@ -11,7 +11,7 @@
  *
  * Return: nothing.... just print error.
  **/
-void additionalError(shelldata_t *mytype, char *more)
+void additionalError(shell_t *mytype, char *more)
 {
 	char *mag, *nub;
 	char *au, *au2;
@@ -37,7 +37,7 @@ void additionalError(shelldata_t *mytype, char *more)
 	au2 = _strcat(au2, more);
 
 	mag = mergeWords(au, mytype->cmd, au2, ": ");
-	displayError(mag);
+	ErrorDisplay(mag);
 
 	free(mag);
 	free(nub);

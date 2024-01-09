@@ -15,6 +15,6 @@ void fetchFullEnv(void)
 	for (a = 0, temp = environ; temp[a] != NULL; a++)
 	{
 		displayer(temp[a]);
-		writeCharacter('\n');
+		writeCharacter('\n', 1);
 	}
 }
