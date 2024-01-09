@@ -12,7 +12,7 @@
 void evaluation(char **args, shell_t *mytype, char *buffer)
 {
 	char *ccs;
-	int new;
+	int ondate;
 
 	if (*args == NULL || args == NULL)
 	{
@@ -20,30 +20,30 @@ void evaluation(char **args, shell_t *mytype, char *buffer)
 	}
 	ccs = args[0];
 	mytype->ccs = ccs;
-	if (verifybuildn(mytype, args) == 1)
+	if (verifybuildin(mytype, args) == 1)
 	{
 		return;
 	}
-	new = i_File(ccs);
-	if (update == 0)
+	ondate = i_File(ccs);
+	if (ondate == 0)
 	{
 		mytype->code_stat = 126;
 		mytype->error_digit = 13;
 		an_issue(mytype);
 		return;
 	}
-	if (new == 1)
+	if (ondate == 1)
 	{
 		run(ccs, args, mytype, buffer);
 		return;
 	}
 	if (getCurrentDir(ccs, args, buffer, mytype) == 1)
 		return;
-	mytype->ccs_path = choose(ccs, mytype);
-	if (mytype->ccs_path != NULL)
+	mytype->cur_path = close(ccs, mytype);
+	if (mytype->cur_path != NULL)
 	{
-		run(mytype->ccs_path, args, mytype, buffer);
-		releaseMemory((void *) mytype->ccs_path);
+		run(mytype->cur_path, args, mytype, buffer);
+		freeMemory((void *) mytype->cur_path);
 		return;
 	}
 	mytype->code_stat = 127;

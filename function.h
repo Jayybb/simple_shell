@@ -30,4 +30,11 @@ int ErrorDisplay(char *message);
 int putToFD(char *message, int fil_d);
 int i_File(char *filename);
 void an_issue(shell_t *mytype);
+void evaluation(char **args, shell_t *mytype, char *buffer);
+char *messageSelect(shell_t mytype);
+char *stringified(int numbe);
+char *_strcopy(char *dest, char *src);
+char *wordMerge(char *w1, char *w2, char *w3, const char *del);
+char *_strdog(char *dest, char *src);
+int _strlem(char *s);
 #endif

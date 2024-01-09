@@ -18,25 +18,25 @@ void additionalError(shell_t *mytype, char *more)
 	int more_size;
 
 	num = NULL;
-	mrg = selectMessage(*mytype);
-	num = stringify(mytype->n_cmd);
+	mrg = messageSelect(*mytype);
+	num = stringified(mytype->n_cmd);
 
-	num_size = _strlen(num);
-	mrg_size = _strlen(mytype->argv[0]);
-	more_size = _strlen(more);
+	num_size = _strlem(num);
+	mrg_size = _strlem(mytype->argv[0]);
+	more_size = _strlem(more);
 
 	bp = malloc(mrg_size + num_size + 3);
-	bp = _strcpy(bp, mytype->argv[0]);
-	bp = _strcat(bp, ": ");
-	bp = _strcat(bp, num);
+	bp = _strcopy(bp, mytype->argv[0]);
+	bp = _strdog(bp, ": ");
+	bp = _strdog(bp, num);
 
 	bp2 = malloc(_strlen(mrg) + more_size + 3);
-	bp2 = _strcpy(bp2, mrg);
-	bp2 = _strcat(bp2, ": ");
-	bp2 = _strcat(bp2, more);
+	bp2 = _strcopy(bp2, mrg);
+	bp2 = _strdog(bp2, ": ");
+	bp2 = _strdog(bp2, more);
 
-	mrg = mergeWords(bp, mytype->cmd, bp2, ": ");
-	displayError(mrg);
+	mrg = wordMerge(bp, mytype->cmd, bp2, ": ");
+	ErrorDisplay(mrg);
 
 	free(mrg);
 	free(num);

@@ -58,6 +58,7 @@ typedef struct __attribute__((__packed__))
 typedef struct __attribute__((__packed__))
 {
     char *cmd;
+    char *ccs;
     void (*func)(struct shell_t *mytype, char **arguments);
 } sysFunction_t;
 
