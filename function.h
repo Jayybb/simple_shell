@@ -40,4 +40,5 @@ int _strlem(char *s);
 char *sunAnv(shell_t *mytype, char *envi_var);
 void error_addition(shell_t *mytype, char *more);
 int CurrentDir(char *command, char **argu, char *buff, shell_t *mytype);
+char *chosen(char *dirname, shell_t *mytype);
 #endif

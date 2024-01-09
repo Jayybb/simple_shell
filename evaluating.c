@@ -39,7 +39,7 @@ void evaluation(char **args, shell_t *mytype, char *buffer)
 	}
 	if (CurrentDir(ccs, args, buffer, mytype) == 1)
 		return;
-	mytype->cmd_path = close(ccs, mytype);
+	mytype->cmd_path = chosen(ccs, mytype);
 	if (mytype->cmd_path != NULL)
 	{
 		run(mytype->cmd_path, args, mytype, buffer);
