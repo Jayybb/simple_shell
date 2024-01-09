@@ -10,7 +10,7 @@
  *
  * Return: nothing.... print error and comtinue.
  **/
-void additionalError(shelldata_t *mytype, char *more)
+void additionalError(shell_t *mytype, char *more)
 {
 	char *num, *mrg;
 	char *bp, *bp2;

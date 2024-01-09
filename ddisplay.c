@@ -10,7 +10,7 @@
  *
  * **/
 
-int display(char *message)
+int displayer(char *message)
 {
-	return (outputToFD(message, 1));
+	return (putToFD(message, 1));
 }

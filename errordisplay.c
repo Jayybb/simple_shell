@@ -7,7 +7,7 @@
  *
  * Return: Number of bytes printed by the function
  **/
-int displayError(char *message)
+int ErrorDisplay(char *message)
 {
-	return (outputToFD(message, 2));
+	return (putToFD(message, 2));
 }

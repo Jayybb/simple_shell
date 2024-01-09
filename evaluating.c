@@ -9,7 +9,7 @@
  *
  * Return: nothing.
  **/
-void evaluate(char **args, shelldata_t *mytype, char *buffer)
+void evaluate(char **args, shell_t *mytype, char *buffer)
 {
 	char *ccs;
 	int new;

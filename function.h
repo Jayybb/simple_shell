@@ -25,4 +25,7 @@ void freeMemoryPointer(void **ptr);
 int manageNumbers(shell_t *str, char *argument);
 void fetchFullEnv(void);
 int systemfunction(shell_t *str, char **args);
+int displayer(char *message);
+int ErrorDisplay(char *message);
+int putToFD(char *message, int fil_d);
 #endif
