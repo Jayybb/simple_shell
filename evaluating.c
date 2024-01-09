@@ -1,7 +1,7 @@
 #include "function.h"
 #include "shell.h"
 /**
- * evaluate - run analysis on args passed to the prompt in the shell code
+ * evaluation - run analysis on args passed to the prompt in the shell code
  *
  * @args: argument to check for
  * @mytype: a struct created of certain data type

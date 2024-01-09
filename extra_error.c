@@ -1,7 +1,7 @@
 #include "function.h"
 #include "shell.h"
 /**
- * additionalError - This is the function that Prints the error
+ * error_addition - This is the function that Prints the error
  * message with extra and more information about error
  *
  * @mytype: a struct that gives info about shell
@@ -10,7 +10,7 @@
  *
  * Return: nothing.... print error and comtinue.
  **/
-void additionalError(shell_t *mytype, char *more)
+void error_addition(shell_t *mytype, char *more)
 {
 	char *num, *mrg;
 	char *bp, *bp2;
