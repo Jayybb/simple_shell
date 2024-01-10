@@ -15,10 +15,6 @@ void lookFullEnv(void)
 	for (a = 0, temp = anvir; temp[a] != NULL; a++)
 	{
 		displayer(temp[a]);
-<<<<<<< HEAD
-		writeCharacter('\n', 1);
-=======
 		characterWriter('\n');
->>>>>>> 8ea1ba3457e115a2034552b91fe6366f74b7075f
 	}
 }

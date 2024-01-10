@@ -35,13 +35,8 @@ void error_addition(shell_t *mytype, char *more)
 	bp2 = _strdog(bp2, ": ");
 	bp2 = _strdog(bp2, more);
 
-<<<<<<< HEAD
-	mrg = mergeWords(bp, mytype->cmd, bp2, ": ");
-	ErrorDisplay(mrg);
-=======
 	mrg = wordMerge(bp, mytype->cmd, bp2, ": ");
 	errorDisplay(mrg);
->>>>>>> 8ea1ba3457e115a2034552b91fe6366f74b7075f
 
 	free(mrg);
 	free(num);

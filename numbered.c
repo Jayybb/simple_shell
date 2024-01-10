@@ -1,7 +1,7 @@
 #include "function.h"
 #include "shell.h"
 /**
- * number - Count the number of digits a given number has
+ * numbering - Count the number of digits a given number has
  *
  * @num: The given number
  *

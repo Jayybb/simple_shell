@@ -9,11 +9,7 @@
  *
  * Return: pointer to the string
 **/
-<<<<<<< HEAD
-char *exchange(shell_t *mytype, int *id, char *word)
-=======
 char *exchanging(shell_t *mytype, int *id, char *word)
->>>>>>> 8ea1ba3457e115a2034552b91fe6366f74b7075f
 {
 	char *tem;
         char told;

@@ -8,7 +8,7 @@
  *
  * Return: No of byte that arer printed
  *
- * **/
+ **/
 
 int displayer(char *message)
 {

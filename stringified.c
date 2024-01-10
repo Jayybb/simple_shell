@@ -13,7 +13,7 @@ char *stringified(int numbe)
 	char *num;
 	int max_digit, i;
 
-	max_digit = numberings(numbe);
+	max_digit = numbering(numbe);
 	num = malloc(max_digit * sizeof(char) + 1);
 	if (num == NULL)
 		return (NULL);
