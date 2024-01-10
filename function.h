@@ -23,7 +23,7 @@ int _strcmp(char *s1, char *s2);
 char *_strbup(char *str);
 void freeMemory(void *ptr);
 void freeMemoryPointer(void **ptr);
-int manageNumbers(shell_t *str, char *argument);
+int anageNumbering(shell_t *str, char *argument);
 void fetchFullEnv(void);
 int systemfunction(shell_t *str, char **args);
 int displayer(char *message);
@@ -58,5 +58,6 @@ char *exchanging(shell_t *mytype, int *id, char *word);
 int characterWriter(char character);
 int numbering(int num);
 void begining(shell_t *mytype);
-
+int i_amLetter(char *string);
+int i_amNumeric(unsigned int number);
 #endif

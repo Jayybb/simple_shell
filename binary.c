@@ -1,7 +1,7 @@
 #include "shell.h"
 #include "function.h"
 /**
- * binaryExit - This function helps exit the shell
+ * binExit - This function helps exit the shell
  *
  * @str: struct parameter
  * with multipie declaration
@@ -9,7 +9,7 @@
  *
  * Return: void
  **/
-void binaryExit(shell_t *str, char **args)
+void binExit(shell_t *str, char **args)
 {
 
 int i, j;
@@ -17,7 +17,7 @@ int i, j;
 i = 1;
 if (args[1] != NULL)
 {
-i = manageNumbers(str, args[1]);
+i = anageNumbering(str, args[1]);
 }
 
 if (i == 0)
