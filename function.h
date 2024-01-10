@@ -11,7 +11,7 @@
 
 #include "shell.h"
 
-extern char **environ;
+extern char **anvir;
 
 void binExit(shell_t *str, char **args);
 void binEnv(shell_t *str, char **args);
@@ -48,4 +48,5 @@ void japa(char *cmd, char **argu, shell_t *mytype, char *buffer);
 char *envGet(const char *variable);
 char *exchanging(shell_t *mytype, int *id, char *word);
 int characterWriter(char character);
+int int numbering(int num)
 #endif

@@ -9,37 +9,41 @@
  * Return: If (successful) {printf(name of var)} else
  * {return (NULL)}
  **/
-char *envGet(const char *variable)
+ char *envGet(const char *variable)
 {
-	char **anvir, *pux, *omo, *tok;
-	int bri;
+    char **anvir = anvir;
+    char *pux, *omo, *tok;
+    int bri;
 
-	bri = _strlen((char *) variable);
+    bri = _strlen((char *)variable);
 
-	for (anvir = anvir; *anvir; ++anvir)
-	{
-		pux = _strbup(*anvir);
+    for (; *anvir; ++anvir)
+    {
+        pux = _strbup(*anvir);
 
-		tok = strtok(pux, "=");
-		if (tok == NULL)
-		{
-			free(pux);
-			return (NULL);
-		}
+        tok = strtok(pux, "=");
+        if (tok == NULL)
+        {
+            free(pux);
+            return NULL;
+        }
 
-		if (_strlen(tok) != bri)
-		{
-			free(pux);
-			continue;
-		}
-		if (_strcmp((char *) variable, pux) == 0)
-		{
-			tok = strtok(NULL, "=");
-			omo = _strbup(tok);
-			free(pux);
-			return (omo);
-		}
-		free(pux);
-	}
-	return (NULL);
+        if (_strlen(tok) != bri)
+        {
+            free(pux);
+            continue;
+        }
+
+        if (_strcmp((char *)variable, pux) == 0)
+        {
+            tok = strtok(NULL, "=");
+            omo = _strbup(tok);
+            free(pux);
+            return omo;
+        }
+
+        free(pux);
+    }
+
+    return NULL;
 }

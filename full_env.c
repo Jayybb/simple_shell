@@ -12,7 +12,7 @@ void lookFullEnv(void)
 	int a = 0;
 	char **temp;
 
-	for (a = 0, temp = environ; temp[a] != NULL; a++)
+	for (a = 0, temp = anvir; temp[a] != NULL; a++)
 	{
 		displayer(temp[a]);
 		characterWriter('\n');
