@@ -1,176 +1,165 @@
 #include "shell.h"
 
 /**
- *errAtoi - Convert a string to an integer
- *@s: The input string to convert
+ * errAtoi - This converts a string to an integer.
+ * @inputStr: The input string to convert.
  *
- *Return: The integer value or INT_MIN/INT_MAX on overflow/underflow
+ * Return: The integer value or INT_MIN/INT_MAX on overflow/underflow.
  */
-int errAtoi(char *s)
+int errAtoi(char *inputStr)
 {
-	int result = 0;
-	int sign = 1; /*Default positive sign */
+    int outputResult = 0;
+    int outputSign = 1;
 
-	if (*s == '-' || *s == '+')
-	{
-		if (*s == '-')
-			sign = -1; /*Set the sign to negative if '-' is present */
-		s++; /*Skip the sign character */
-	}
+    if (*inputStr == '-' || *inputStr == '+')
+    {
+        if (*inputStr == '-')
+            outputSign = -1;
+        inputStr++;
+    }
 
-	for (; *s != '\0'; s++)
-	{
-		if (*s >= '0' && *s <= '9')
-		{
-			int digit = *s - '0';
+    for (; *inputStr != '\0'; inputStr++)
+    {
+        if (*inputStr >= '0' && *inputStr <= '9')
+        {
+            int currentDigit = *inputStr - '0';
 
-			/*Check for potential integer overflow/underflow */
-			if (result > (INT_MAX - digit) / 10 || result < (INT_MIN + digit) / 10)
-			{
-				return ((sign == 1) ? INT_MAX : INT_MIN);
-			}
+            if (outputResult > (INT_MAX - currentDigit) / 10 || outputResult < (INT_MIN + currentDigit) / 10)
+            {
+                return ((outputSign == 1) ? INT_MAX : INT_MIN);
+            }
 
-			result = result * 10 + sign * digit;
-		}
-		else
-		{
-			return (-1); /*Invalid character in the input string */
-		}
-	}
+            outputResult = outputResult * 10 + outputSign * currentDigit;
+        }
+        else
+        {
+            return (-1);
+        }
+    }
 
-	return (result);
+    return outputResult;
 }
 
 /**
- *printError - Print an error message with formatting
- *@info: Information about the error context
- *@estr: The error string to print
- */
-void printError(info_t *info, char *estr)
-{
-	/*Print the filename followed by ": " */
-	ePuts(info->fname);
-	ePuts(": ");
-
-	/*Print the line count followed by ": " */
-	printD(info->line_count, STDERR_FILENO);
-	ePuts(": ");
-
-	/*Print the program name (from argv[0]) followed by ": " */
-	ePuts(info->argv[0]);
-	ePuts(": ");
-
-	/*Print the error string (estr) */
-	ePuts(estr);
-}
-
-/**
- *printD - Print an integer to a file descriptor
- *@input: The integer to print
- *@fd: The file descriptor to print to
+ * printError - Prints an error message with formatting.
+ * @errorInfo: Information about the error context.
+ * @errorMessage: The error message to print.
  *
- *Return: The number of characters printed
+ * Returns: None.
  */
-int printD(int input, int fd)
+void printError(info_t *errorInfo, char *errorMessage)
 {
-	int (*_putChar)(char) = (fd == STDERR_FILENO) ? ePutChar : putChar;
-	int count = 0;
-	int divisor, digit;
-	bool leadingZero;
-
-	if (input < 0)
-	{
-		_putChar('-');
-		input = -input;
-		count++;
-	}
-
-	leadingZero = true;
-
-	for (divisor = 1000000000; divisor >= 1; divisor /= 10)
-	{
-		digit = input / divisor;
-		input %= divisor;
-
-		if (digit > 0 || !leadingZero)
-		{
-			_putChar('0' + digit);
-			count++;
-			leadingZero = false;
-		}
-	}
-
-	return (count);
+    ePuts(errorInfo->fname);
+    ePuts(": ");
+    printD(errorInfo->line_count, STDERR_FILENO);
+    ePuts(": ");
+    ePuts(errorInfo->argv[0]);
+    ePuts(": ");
+    ePuts(errorMessage);
 }
 
 /**
- *convertNum - Convert a number to a string with a specified base
- *@num: The number to convert
- *@base: The base for conversion (e.g., 10 for decimal)
- *@flags: Flags for conversion options
+ * printD - Prints an integer to a file descriptor.
+ * @outputValue: The integer to print.
+ * @outputFd: The file descriptor to print to.
  *
- *Return: The pointer to the converted string
+ * Returns: The number of characters printed.
  */
-char *convertNum(long int num, int base, int flags)
+int printD(int outputValue, int outputFd)
 {
-	static char buffer[50];
-	static char *array;
-	char sign = 0;
-	char *ptr;
-	unsigned long n = num;
+    int (*outputPutChar)(char) = (outputFd == STDERR_FILENO) ? ePutChar : putChar;
+    int outputCount = 0;
+    int outputDivisor, outputDigit;
+    bool outputLeadingZero;
 
-	/*Determine the character array to use for conversion based on flags */
-	array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
+    if (outputValue < 0)
+    {
+        outputPutChar('-');
+        outputValue = -outputValue;
+        outputCount++;
+    }
 
-	/*Check if the number is negative and flags allow for signed conversion */
-	if (!(flags & CONVERT_UNSIGNED) && num < 0)
-	{
-		sign = '-';
-		n = -num;
-	}
+    outputLeadingZero = true;
 
-	ptr = &buffer[49];
-	*ptr = '\0';
+    for (outputDivisor = 1000000000; outputDivisor >= 1; outputDivisor /= 10)
+    {
+        outputDigit = outputValue / outputDivisor;
+        outputValue %= outputDivisor;
 
-	/*Convert the number to the specified base */
-	do {
-		*--ptr = array[n % base];
-		n /= base;
-	} while (n != 0);
+        if (outputDigit > 0 || !outputLeadingZero)
+        {
+            outputPutChar('0' + outputDigit);
+            outputCount++;
+            outputLeadingZero = false;
+        }
+    }
 
-	/*Add the sign character if the number was negative */
-	if (sign)
-		*
-		--ptr = sign;
-
-	/*Return the pointer to the converted string */
-	return (ptr);
+    return outputCount;
 }
 
 /**
- *removeComm - Remove a comment from a string
- *@buf: The input string to remove the comment from
+ * convertNum - Converts a number to a string with a specified base.
+ * @inputNum: The number to convert.
+ * @inputBase: The base for conversion (e.g., 10 for decimal).
+ * @inputFlags: Flags for conversion options.
+ *
+ * Returns: The pointer to the converted string.
  */
-void removeComm(char *buf)
+char *convertNum(long int inputNum, int inputBase, int inputFlags)
 {
-	int i = 0;
-	int commentStart = -1;
+    static char outputBuffer[50];
+    static char *outputArray;
+    char outputSign = 0;
+    char *outputPtr;
+    unsigned long outputNum = inputNum;
 
-	/*Search for the '#' character and check for the space before it */
-	while (buf[i] != '\0')
-	{
-		if (buf[i] == '#' && (i == 0 || buf[i - 1] == ' '))
-		{
-			commentStart = i;
-			break;
-		}
+    outputArray = inputFlags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
 
-		i++;
-	}
+    if (!(inputFlags & CONVERT_UNSIGNED) && inputNum < 0)
+    {
+        outputSign = '-';
+        outputNum = -inputNum;
+    }
 
-	/*Remove the comment if found */
-	if (commentStart != -1)
-	{
-		buf[commentStart] = '\0';
-	}
+    outputPtr = &outputBuffer[49];
+    *outputPtr = '\0';
+
+    do
+    {
+        *--outputPtr = outputArray[outputNum % inputBase];
+        outputNum /= inputBase;
+    } while (outputNum != 0);
+
+    if (outputSign)
+        *--outputPtr = outputSign;
+
+    return outputPtr;
+}
+
+/**
+ * removeComm - Removes a comment from a string.
+ * @commentBuffer: The input string to remove the comment from.
+ *
+ * Returns: None.
+ */
+void removeComm(char *commentBuffer)
+{
+    int commentIndex = 0;
+    int commentStart = -1;
+
+    while (commentBuffer[commentIndex] != '\0')
+    {
+        if (commentBuffer[commentIndex] == '#' && (commentIndex == 0 || commentBuffer[commentIndex - 1] == ' '))
+        {
+            commentStart = commentIndex;
+            break;
+        }
+
+        commentIndex++;
+    }
+
+    if (commentStart != -1)
+    {
+        commentBuffer[commentStart] = '\0';
+    }
 }
