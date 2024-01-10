@@ -32,6 +32,19 @@ int putToFD(char *message, int fil_d);
 int writeFDcharacters(char cha, int fil_d);
 int i_File(char *filename);
 void an_issue(shell_t *mytype);
+<<<<<<< HEAD
+char *_strcpy(char *dest, char *src);
+void evaluate(char **args, shell_t *mytype, char *buffer);
+char *exchange(shell_t *mytype, int *id, char *word);
+char *stringify(int numbe);
+char *subEnv(shell_t *mytype, char *envi_var);
+char *selectMessage(shell_t mytype);
+char *mergeWords(char *w1, char *w2, char *w3, const char *del);
+int writeCharacter(char cha, int fil_d);
+
+
+
+=======
 void evaluation(char **args, shell_t *mytype, char *buffer);
 void lookFullEnv(void);
 char *messageSelect(shell_t mytype);
@@ -48,5 +61,9 @@ void japa(char *cmd, char **argu, shell_t *mytype, char *buffer);
 char *envGet(const char *variable);
 char *exchanging(shell_t *mytype, int *id, char *word);
 int characterWriter(char character);
+<<<<<<< HEAD
 int int numbering(int num)
+=======
+>>>>>>> 8ea1ba3457e115a2034552b91fe6366f74b7075f
+>>>>>>> 5acbf766daabf6365dece0fc75e419c5ed32e2ba
 #endif

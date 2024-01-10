@@ -11,7 +11,11 @@
  *
  * Return: nothing.... just print error.
  **/
+<<<<<<< HEAD
+void additionalError(shell_t *mytype, char *more)
+=======
 void error_addition(shell_t *mytype, char *more)
+>>>>>>> 8ea1ba3457e115a2034552b91fe6366f74b7075f
 {
 	char *mag, *nub;
 	char *au, *au2;
@@ -36,8 +40,13 @@ void error_addition(shell_t *mytype, char *more)
 	au2 = _strcopy(au2, ": ");
 	au2 = _strcopy(au2, more);
 
+<<<<<<< HEAD
+	mag = mergeWords(au, mytype->cmd, au2, ": ");
+	ErrorDisplay(mag);
+=======
 	mag = wordMerge(au, mytype->cmd, au2, ": ");
 	errorDisplay(mag);
+>>>>>>> 8ea1ba3457e115a2034552b91fe6366f74b7075f
 
 	free(mag);
 	free(nub);
