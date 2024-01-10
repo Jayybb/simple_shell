@@ -1,53 +1,111 @@
 #include "shell.h"
 
 /**
- *main - The main function of the program.
- *@ac: The number of command-line arguments.
- *@av: An array of strings representing the command-line arguments.
+ *shAtoi - Convert a string to an integer.
+ *@s: The input string to be converted.
  *
- *This function is the entry point of the program.
- *It reads command-line arguments, opens a file if provided,
- * and performs other tasks.
- *
- *Return: 0 on success, 1 on failure.
+ *Return: The integer value represented by the string.
  */
-int main(int ac, char **av)
+int shAtoi(const char *s)
 {
-	info_t info[] = { INFO_INIT
-	};
+	int i = 0;
+	int sign = 1;
+	int flag = 0;
+	int output = 0;
 
-	int fd = 2;
+	unsigned int result = 0;
 
-	/*Moved the assembly code to after checking the command-line argument. */
-	if (ac == 2)
+	while (s[i] != '\0' && flag != 2)
 	{
-		fd = open(av[1], O_RDONLY);
-		if (fd == -1)
+		if (s[i] == '-')
 		{
-			if (errno == EACCES)
-				exit(126);
-			if (errno == ENOENT)
-			{
-				ePuts(av[0]);
-				ePuts(": 0: Can't open ");
-				ePuts(av[1]);
-				ePutChar('\n');
-				ePutChar(BUF_FLUSH);
-				exit(127);
-			}
-
-			return (EXIT_FAILURE);
+			sign *= -1;
 		}
 
-		info->readfd = fd;
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			flag = 1;
+			result *= 10;
+			result += (s[i] - '0');
+		}
+		else if (flag == 1)
+		{
+			flag = 2;
+		}
+
+		i++;
 	}
 
-	/*Moved the assembly code to here. */
-	asm("mov %1, %0\n\t"
-		"add $3, %0" : "=r"(fd) : "r"(fd));
+	if (sign == -1)
+	{
+		output = -result;
+	}
+	else
+	{
+		output = result;
+	}
 
-	popuEnvList(info);
-	readHistory(info);
-	hsh(info, av);
-	return (EXIT_SUCCESS);
+	return (output);
+}
+
+/**
+ *isAlpha - Check if a character is an alphabetic character (A-Z or a-z).
+ *@c: The character to check.
+ *
+ *Return: 1 if the character is an alphabetic character, 0 otherwise.
+ */
+int isAlpha(int c)
+{
+	int isLowerCase = (c >= 'a' && c <= 'z');
+	int isUpperCase = (c >= 'A' && c <= 'Z');
+
+	if (isLowerCase || isUpperCase)
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
+}
+
+/**
+ *isDelim - Check if a character is a delimiter in a given set of delimiters.
+ *@c: The character to check.
+ *@delim: The set of delimiters to compare against.
+ *
+ *Return: 1 if the character is a delimiter, 0 otherwise.
+ */
+int isDelim(char c, const char *delim)
+{
+	while (*delim)
+	{
+		if (*delim++ == c)
+		{
+			return (1);
+		}
+	}
+
+	return (0);
+}
+
+/**
+ *interact - Check if the program is running in an interactive terminal.
+ *@info: A pointer to information about the program's input and output.
+ *
+ *Return: 1 if running in an interactive terminal, 0 otherwise.
+ */
+int interact(info_t *info)
+{
+	int isTerminal = isatty(STDIN_FILENO);
+	int isReadFDValid = info->readfd <= 2;
+
+	if (isTerminal && isReadFDValid)
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
 }
