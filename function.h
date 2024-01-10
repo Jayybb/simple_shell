@@ -57,5 +57,6 @@ char *envGet(const char *variable);
 char *exchanging(shell_t *mytype, int *id, char *word);
 int characterWriter(char character);
 int numbering(int num);
+void begining(shell_t *mytype);
 
 #endif
