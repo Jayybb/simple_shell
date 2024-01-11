@@ -124,7 +124,6 @@ int deleteNodeAtIndex(list_t **, unsigned int);
 int ePutChar(char);
 int errAtoi(char *);
 int findBuiltin(info_t *);
-int getLine(info_t *, char **, size_t *);
 int hsh(info_t *, char **);
 int interact(info_t *);
 int isAlpha(int);
@@ -164,7 +163,6 @@ list_t *nodeStartsWith(list_t *, char *, char);
 size_t listLen(const list_t *);
 size_t printList(const list_t *);
 size_t printListStr(const list_t *);
-ssize_t getInput(info_t *);
 ssize_t getNodeIndex(list_t *, list_t *);
 void *reAlloc(void *, unsigned int, unsigned int);
 void _puts(char *);
@@ -179,6 +177,10 @@ void freeList(list_t **);
 void printError(info_t *, char *);
 void removeComm(char *);
 void setInfo(info_t *, char **);
-void sigintHandler(int);
+void sigintHandler(__attribute__((unused)) int sig_num);
+int getLine(info_t *info, char **ptr, size_t *length);
+ssize_t read_buf(info_t *info, char *buf, size_t *i);
+ssize_t getInput(info_t *info);
+ssize_t input_buf(info_t *info, char **buf, size_t *len);
 
 #endif
