@@ -1,90 +1,90 @@
 #include "shell.h"
 
 /**
- *_strnCpy - Copy at most n characters from src to dest
- *@dest: Destination string
- *@src: Source string
- *@n: Maximum number of characters to copy
+ * _strnCpy - Copy at most n characters from src to dest
+ * @dest: Destination string
+ * @src: Source string
+ * @n: Maximum number of characters to copy
  *
- *Return: A pointer to the destination string (dest).
+ * Return: A pointer to the destination string (dest).
  */
-char *_strnCpy(char *dest, char *src, int n)
+char *_strnCpy(char *destination, char *source, int count)
 {
-	char *s = dest;
-	int i = 0;
+    char *result = destination;
+    int index = 0;
 
-	while (i < n)
-	{
-		if (src[i] != '\0')
-		{
-			dest[i] = src[i];
-		}
-		else
-		{
-			while (i < n)
-			{
-				dest[i] = '\0';
-				i++;
-			}
+    while (index < count)
+    {
+        if (source[index] != '\0')
+        {
+            destination[index] = source[index];
+        }
+        else
+        {
+            while (index < count)
+            {
+                destination[index] = '\0';
+                index++;
+            }
 
-			break;
-		}
+            break;
+        }
 
-		i++;
-	}
+        index++;
+    }
 
-	return (s);
+    return result;
 }
 
 /**
- *_strnCat - Concatenate at most n characters from src to dest
- *@dest: Destination string
- *@src: Source string
- *@n: Maximum number of characters to concatenate
+ * _strnCat - Concatenate at most n characters from src to dest
+ * @dest: Destination string
+ * @src: Source string
+ * @n: Maximum number of characters to concatenate
  *
- *Return: A pointer to the destination string (dest).
+ * Return: A pointer to the destination string (dest).
  */
-char *_strnCat(char *dest, const char *src, int n)
+char *_strnCat(char *destination, const char *source, int count)
 {
-	char *s = dest;
-	int i = 0, j = 0;
+    char *result = destination;
+    int destIndex = 0, srcIndex = 0;
 
-	/*Move to the end of the destination string */
-	while (dest[i] != '\0')
-	{
-		i++;
-	}
+    /* Move to the end of the destination string */
+    while (destination[destIndex] != '\0')
+    {
+        destIndex++;
+    }
 
-	/*Concatenate characters from src to dest, up to a maximum of n characters */
-	while (src[j] != '\0' && j < n)
-	{
-		dest[i] = src[j];
-		i++;
-		j++;
-	}
+    /* Concatenate characters from src to dest, up to a maximum of n characters */
+    while (source[srcIndex] != '\0' && srcIndex < count)
+    {
+        destination[destIndex] = source[srcIndex];
+        destIndex++;
+        srcIndex++;
+    }
 
-	/*Ensure the destination string is null-terminated */
-	dest[i] = '\0';
+    /* Ensure the destination string is null-terminated */
+    destination[destIndex] = '\0';
 
-	return (s);
+    return result;
 }
 
 /**
- *_strChr - Search for the first occurrence of a character in a string
- *@s: The input string
- *@c: The character to search for
+ * _strChr - Search for the first occurrence of a character in a string
+ * @str: The input string
+ * @character: The character to search for
  *
- *Return: A pointer to the first occurrence of the character in the string,
- *        or NULL if the character is not found.
+ * Return: A pointer to the first occurrence of the character in the string,
+ *         or NULL if the character is not found.
  */
-char *_strChr(char *s, char c)
+char *_strChr(char *string, char character)
 {
-	while (*s != '\0')
-	{
-		if (*s == c)
-			return (s);
-		s++;
-	}
+    while (*string != '\0')
+    {
+        if (*string == character)
+            return string;
+        string++;
+    }
 
-	return (NULL);
+    return NULL;
 }
