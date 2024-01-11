@@ -1,137 +1,135 @@
 #include "shell.h"
 
 /**
- *printAlias - Print an alias from a list node
- *@node: Pointer to the list node containing the alias
+ * printAlias - Display an alias from a list node.
+ * @node: Pointer to the list node containing the alias.
  *
- *This function prints an alias from a given list node.
+ * This function displays an alias from a given list node.
  *
- *Return: 0 on success, 1 on failure
+ * Return: 0 on success, 1 on failure.
  */
 int printAlias(list_t *node)
 {
-	char *equalSignPos;
-	char *aliasName;
+    char *eqSignPos;
+    char *aliasPart;
 
-	if (node)
-	{
-		equalSignPos = _strChr(node->str, '=');
-		for (aliasName = node->str; aliasName <= equalSignPos; aliasName++)
-			putChar(*aliasName);
+    if (node)
+    {
+        eqSignPos = _strChr(node->str, '=');
+        for (aliasPart = node->str; aliasPart <= eqSignPos; aliasPart++)
+            putChar(*aliasPart);
 
-		putChar('\'');
-		_puts(equalSignPos + 1);
-		_puts("'\n");
-		return (0);
-	}
+        putChar('\'');
+        _puts(eqSignPos + 1);
+        _puts("'\n");
+        return 0;
+    }
 
-	return (1);
+    return 1;
 }
 
 /**
- *unsetAlias - Unset an alias in the info structure
- *@info: Pointer to the info structure
- *@str: Alias to unset
+ * unsetAlias - Remove an alias from the info structure.
+ * @info: Pointer to the info structure.
+ * @str: Alias to remove.
  *
- *This function unsets an alias in the info structure.
+ * This function removes an alias from the info structure.
  *
- *Return: 0 on success, 1 on failure
+ * Return: 0 on success, 1 on failure.
  */
 int unsetAlias(info_t *info, char *str)
 {
-	char *equalSignPos;
-	char originalChar;
-	int result;
+    char *eqSignPos;
+    char origChar;
+    int result;
 
-	equalSignPos = _strChr(str, '=');
-	if (!equalSignPos)
-		return (1);
+    eqSignPos = _strChr(str, '=');
+    if (!eqSignPos)
+        return 1;
 
-	originalChar = *equalSignPos;
-	*equalSignPos = 0;
+    origChar = *eqSignPos;
+    *eqSignPos = 0;
 
-	result = deleteNodeAtIndex(&(info->alias), getNodeIndex
-		(info->alias, nodeStartsWith(info->alias, str, -1)));
+    result = deleteNodeAtIndex(&(info->alias), getNodeIndex
+            (info->alias, nodeStartsWith(info->alias, str, -1)));
 
-	*equalSignPos = originalChar;
-	return (result);
+    *eqSignPos = origChar;
+    return result;
 }
 
 /**
- *setAlias - Set an alias in the info structure
- *@info: Pointer to the info structure
- *@str: Alias to set
+ * setAlias - Add an alias to the info structure.
+ * @info: Pointer to the info structure.
+ * @str: Alias to add.
  *
- *This function sets an alias in the info structure.
+ * This function adds an alias to the info structure.
  *
- *Return: 0 on success, 1 on failure
+ * Return: 0 on success, 1 on failure.
  */
 int setAlias(info_t *info, char *str)
 {
-	char *equalSignPos = _strChr(str, '=');
-	int result;
+    char *eqSignPos = _strChr(str, '=');
+    int result;
 
-	if (!equalSignPos)
-		return (1);
+    if (!eqSignPos)
+        return 1;
 
-	if (!*++equalSignPos)
-		return (unsetAlias(info, str));
+    if (!*++eqSignPos)
+        return unsetAlias(info, str);
 
-	unsetAlias(info, str);
-	result = addNodeEnd(&(info->alias), str, 0) == NULL;
-	return (result);
+    unsetAlias(info, str);
+    result = addNodeEnd(&(info->alias), str, 0) == NULL;
+    return result;
 }
 
 /**
- *myAlias - Handle alias commands
- *@info: Pointer to the info structure
+ * myAlias - Manage alias commands.
+ * @info: Pointer to the info structure.
  *
- *This function handles alias commands,
- *including setting and printing aliases.
- *Return: Always returns 0
+ * This function manages alias commands,
+ * including setting and displaying aliases.
+ * Return: Always returns 0.
  */
 int myAlias(info_t *info)
 {
-	int i;
-	char *equalSignPos;
-	list_t *node;
+    int i;
+    char *eqSignPos;
+    list_t *currentNode;
 
-	if (info->argc == 1)
-	{
-		node = info->alias;
-		while (node)
+    if (info->argc == 1)
+    {
+        currentNode = info->alias;
+        while (currentNode)
+        {
+            printAlias(currentNode);
+            currentNode = currentNode->next;
+        }
 
-		{
+        return 0;
+    }
 
-			printAlias(node);
-			node = node->next;
-		}
+    for (i = 1; info->argv[i]; i++)
+    {
+        eqSignPos = _strChr(info->argv[i], '=');
+        if (eqSignPos)
+            setAlias(info, info->argv[i]);
+        else
+            printAlias(nodeStartsWith(info->alias, info->argv[i], '='));
+    }
 
-		return (0);
-	}
-
-	for (i = 1; info->argv[i]; i++)
-	{
-		equalSignPos = _strChr(info->argv[i], '=');
-		if (equalSignPos)
-			setAlias(info, info->argv[i]);
-		else
-			printAlias(nodeStartsWith(info->alias, info->argv[i], '='));
-	}
-
-	return (0);
+    return 0;
 }
 
 /**
- *myHistory - Print the command history
- *@info: Pointer to the info structure
+ * myHistory - Display the command history.
+ * @info: Pointer to the info structure.
  *
- *This function prints the command history.
+ * This function displays the command history.
  *
- *Return: Always returns 0
+ * Return: Always returns 0.
  */
 int myHistory(info_t *info)
 {
-	printList(info->history);
-	return (0);
+    printList(info->history);
+    return 0;
 }
