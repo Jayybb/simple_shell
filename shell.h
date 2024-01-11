@@ -102,10 +102,10 @@ typedef struct builtin
 
 char **getEnviron(info_t *);
 char **listToStrings(list_t *);
-char **strTow(char *, char *);
-char **strTow2(char *, char);
 char *_strChr(char *, char);
 char *_strnCat(char *dest, const char *src, int n);
+char **strTow2(char *inputStr, char delimiter);
+char **strTow(char *inputStr, char *delimiters);
 char *_strnCpy(char *, char *, int);
 char *convertNum(long int, int, int);
 char *dupChars(char *, int, int);
